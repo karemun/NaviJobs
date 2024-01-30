@@ -1,3 +1,3 @@
 <h1 class="text-4xl">
-    Job<span class="font-extrabold">Nexus</span>
+    Shigoto<span class="font-extrabold">Net</span>
 </h1>

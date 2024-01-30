@@ -16,6 +16,6 @@
         </style>
     </head>
     <body class="antialiased">
-        <h1 class="font-extrabold">JobNexus</h1>
+        <h1 class="font-extrabold">ShigotoNet</h1>
     </body>
 </html>
