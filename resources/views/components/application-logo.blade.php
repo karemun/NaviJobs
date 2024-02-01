@@ -1,3 +1,3 @@
 <h1 class="text-4xl">
-    Shigoto<span class="font-extrabold">Net</span>
+    Navi<span class="font-extrabold">Jobs</span>
 </h1>
