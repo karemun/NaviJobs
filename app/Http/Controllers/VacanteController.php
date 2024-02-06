@@ -12,6 +12,7 @@ class VacanteController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Vacante::class); // Solo reclutadores ven el modelo Vacante
         return view('vacantes.index');
     }
 
@@ -20,6 +21,7 @@ class VacanteController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Vacante::class); // Solo reclutadores crean en el modelo Vacante
         return view('vacantes.create');
     }
 

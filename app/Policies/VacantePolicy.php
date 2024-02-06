@@ -13,7 +13,7 @@ class VacantePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->rol === 2; // Solo los recrutadores (2) pueden ver las vistas
     }
 
     /**
@@ -29,7 +29,7 @@ class VacantePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->rol === 2; // Solo los recrutadores (2) pueden crear vacantes
     }
 
     /**
