@@ -31,4 +31,15 @@ class Vacante extends Model
     {
         return $this->belongsTo(Salario::class); // Pertenece a salario
     }
+
+    public function cadidatos()
+    {
+        return $this->hasMany(Candidato::class);
+    }
+
+    public function reclutador()
+    {
+        // Relacion hacia el reclutador que publico la vacante
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -37,4 +37,10 @@
             </p>
         </div>
     @endguest
+
+    <!-- Los reclutadores no pueden postularse a la Vacante -->
+    @cannot('create', App\Models\Vacante::class)
+        <livewire:postular-vacante :vacante="$vacante" />
+    @endcannot
+
 </div>
