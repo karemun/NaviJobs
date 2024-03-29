@@ -32,7 +32,7 @@ class Vacante extends Model
         return $this->belongsTo(Salario::class); // Pertenece a salario
     }
 
-    public function cadidatos()
+    public function candidatos()
     {
         return $this->hasMany(Candidato::class)->orderBy('created_at', 'DESC');
     }

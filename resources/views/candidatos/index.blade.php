@@ -15,7 +15,7 @@
 
                     <div class="md:flex md:justify-center p-5">
                         <ul class="divide-y divide-gray-300 w-full">
-                            @forelse ($vacante->cadidatos as $candidato)
+                            @forelse ($vacante->candidatos as $candidato)
                                 <li class="p-3 flex items-center">
                                     <div class="flex-1">
                                         <p class="text-xl font-medium text-gray-800">{{ $candidato->user->name }}</p>

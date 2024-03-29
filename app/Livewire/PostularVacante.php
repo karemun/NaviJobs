@@ -27,25 +27,30 @@ class PostularVacante extends Component
     {
         $datos = $this->validate();
 
-        // Almacenar el CV
-        $cv = $this->cv->store('public/cv'); // Se guarda la imagen y la ubicacion
-        $datos['cv'] = str_replace('public/cv/', '', $cv); // Obtiene solo el nombre
+        // validar que el usuario no haya postulado a la vacante
+        if($this->vacante->candidatos()->where('user_id', auth()->user()->id)->count() > 0) {
+            session()->flash('mensaje', 'Ya postulaste a esta vacante anteriormente');
+        } else {
+            // Almacenar el CV
+            $cv = $this->cv->store('public/cv'); // Se guarda la imagen y la ubicacion
+            $datos['cv'] = str_replace('public/cv/', '', $cv); // Obtiene solo el nombre
 
-        // Crear candidato a la vacante
-        $this->vacante->cadidatos()->create([
-            'user_id' => auth()->user()->id,
-            // 'vacante_id' se almacena en automatico por la relacion en el modelo
-            'cv' => $datos['cv'],
-        ]);
-
-        // Crear notificacion y enviar el email
-        $this->vacante->reclutador->notify(new NuevoCandidato($this->vacante->vacante_id, $this->vacante->titulo, auth()->user()->id));
-
-        // Crear un mensaje
-        session()->flash('mensaje', 'Se envió correctamente tu información, mucha suerte!');
-
-        // Redireccionar al usuario
-        return redirect()->back();
+            // Crear candidato a la vacante
+            $this->vacante->candidatos()->create([
+                'user_id' => auth()->user()->id,
+                // 'vacante_id' se almacena en automatico por la relacion en el modelo
+                'cv' => $datos['cv'],
+            ]);
+    
+            // Crear notificación y enviar el email
+            $this->vacante->reclutador->notify(new NuevoCandidato($this->vacante->id, $this->vacante->titulo, auth()->user()->id ));
+    
+            // Mostrar el usuario un mensaje de ok
+            session()->flash('mensaje', 'Se envió correctamente tu información, mucha suerte');
+    
+            // Redireccionar al usuario
+            return redirect()->back();
+        }
     }
 
     public function render()

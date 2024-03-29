@@ -13,6 +13,8 @@ class CandidatoController extends Controller
      */
     public function index(Vacante $vacante)
     {
+        $this->authorize('viewAny', [Candidato::class, $vacante]);
+
         return view('candidatos.index', [
             'vacante' => $vacante
         ]);
